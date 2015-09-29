@@ -1,0 +1,25 @@
+<div class="container">
+
+    <div class="row">
+    	
+    	<div class="col-sm-12">
+    		<h1 class="row">{{ post.title }}</h1>
+    		<div class="row" ta-bind ng-model="post.content"></div>
+    	</div>
+    	
+    	<label for="editEnabled">EDITAR</label>
+    	<input type="checkbox" ng-model="editEnabled" ng-init="editEnabled = true" id="editEnabled"> 
+
+    	<div class="col-sm-12" ng-show="editEnabled">
+    		<form action="" ng-submit="savePost()">
+	    		<input ng-model="post.title" class="col-sm-12" required></input>
+	    		<hr>
+	    		<!-- ver detalles de esta directiva en https://github.com/fraywing/textAngular -->
+	    		<!-- <text-angular ng-model="post.content" class="col-sm-12"></text-angular> -->
+	    		<textarea ng-model="post.content" class="col-sm-12"></textarea>
+	    		
+	    		<button type="submit" class="btn btn-primary">GUARDAR</button>
+    		</form>
+    	</div>
+   	</div>
+</div>

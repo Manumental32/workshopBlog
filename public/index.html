@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- CSS (load bootstrap) -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <!-- LIBRERIAS NECESARIAS PARA ESTE PROYECTO EN PARTITULAR-->
+    <link rel='stylesheet' href='bower_components/textAngular/dist/textAngular.css'>
+    <link rel='stylesheet' href='bower_components/textAngular/src/textAngular.css'>
+    <link rel='stylesheet' href='bower_components/font-awesome/css/font-awesome.css'>
+    <link rel="stylesheet" href="app.css">
+
+
+    <!-- JS (load angular, ui-router, and our custom js file) -->
+    <!-- LIBRERIAS INDISPENSABLES PARA ANGULAR -->
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+    <!-- LIBRERIAS RECOMENDABLES PARA ANGULAR -->
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+    <!-- LIBRERIAS NECESARIAS PARA ESTE PROYECTO EN PARTITULAR-->
+	<script src='bower_components/textAngular/dist/textAngular-rangy.min.js'></script>
+	<script src='bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
+	<script src='bower_components/textAngular/dist/textAngular.min.js'></script>
+	<script src='bower_components/textAngular/dist/textAngularSetup.js'></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+
+    <!-- LIBRERIAS INTERESANTES -->
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
+    <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+
+
+	<!-- LIBRERIAS HECHAS POR NOSOTROS -->
+    <script src="app.js"></script>
+    <script src="login.controller.js"></script>
+    <script src="logout.controller.js"></script>
+    <script src="post.controller.js"></script>
+    <script src="post.service.js"></script>
+
+</head>
+
+
+<!-- apply our angular app to our site -->
+<body ng-app="BlogApp">
+
+<!-- NAVIGATION -->
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" ui-sref="post">Blog Workshop</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li><a ui-sref="login">login</a></li>
+        <li><a ui-sref="post">Posts</a></li>
+        <li><a ui-sref="about">About</a></li>
+        <li><a ui-sref="logout">Logout</a></li>
+    </ul>
+	<div class="navbar-header">
+        <li><a class="navbar-brand" ui-sref="post"> Hola {{saludo}}</a></li>
+	</div>
+</nav>
+
+<div class="container">
+
+    <div ui-view></div>
+
+</div>
+
+</body>
+</html>

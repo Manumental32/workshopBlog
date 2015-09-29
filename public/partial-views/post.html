@@ -1,0 +1,42 @@
+<div class="container">
+
+	<div class="row">
+    	
+    	<label for="createEnabled">CREAR UN POST</label>
+    	<input type="checkbox" ng-model="createEnabled" ng-init="createEnabled = true" id="createEnabled"> 
+
+    	<div class="col-sm-12" ng-show="createEnabled">
+    		<form action="" ng-submit="createPost()">
+	    		<input ng-model="post.title" class="col-sm-12" required></input>
+	    		<hr>
+	    		<textarea ng-model="post.content" class="col-sm-12"></textarea>
+	    		<!-- <text-angular ng-model="post.content" class="col-sm-12"></text-angular> -->
+	    		<button type="submit" class="btn btn-primary">GUARDAR</button>
+    		</form>
+    	</div>
+
+	</div>
+</div>
+
+
+<table class="table movietable">
+    <tr>
+        <td>
+        	<h3>Todos los post</h3>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        	<label for="search">Buscar</label>
+        	<input type="text" ng-model="searchText">
+        </td>
+    </tr>
+    <tr ng-repeat="post in posts | filter: searchText | orderBy : '-title'">
+    <!-- <tr ng-repeat="post in posts | filter: searchText "> -->
+        <td width="80%">{{post.title}}</td>
+        <td width="20%">
+            <a class="btn btn-primary" ui-sref="post_detail({id : post._id})">Ver detalle</a>
+            <a class="btn btn-danger"  ng-click="deletePost(post)">Eliminar</a>
+        </td>
+    </tr>
+</table>

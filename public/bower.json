@@ -1,0 +1,34 @@
+{
+  "name": "bawer.js",
+  "version": "0.0.0",
+  "authors": [
+    "maquino <maquino@arsat.com.ar>"
+  ],
+  "description": "librerias traidas con bower para el frontend",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node",
+    "yui"
+  ],
+  "license": "MIT",
+  "homepage": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.6",
+    "angular-bootstrap": "~0.13.4",
+    "angular-local-storage": "~0.2.2",
+    "angular-resource": "~1.4.6",
+    "angular-strap": "~2.3.3",
+    "angular-ui-router": "~0.2.15",
+    "bootstrap": "~3.3.5",
+    "font-awesome": "~4.4.0",
+    "textAngular": "~1.4.6"
+  }
+}

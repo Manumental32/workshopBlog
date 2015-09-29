@@ -1,0 +1,36 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+
+            <h1 class="text-center login-title">Login </h1>
+
+            <div class="account-wall">
+                <form class="form-signin" name="formSignin"  ng-submit="login()">
+
+                	<input type="text" name="username" ng-model="username" class="form-control" placeholder="Usuario" required autofocus>
+
+					<span style="color:red" ng-show="formSignin.username.$dirty || formSignin.password.$dirty">
+						<span ng-show="formSignin.username.$error.required">El usuario es required.</span>
+					</span>
+
+                	<input type="password" name="password" ng-model="password" class="form-control" placeholder="Password" ng-minlength="5" required>
+
+					<span style="color:red" ng-show="formSignin.password.$dirty && formSignin.password.$invalid">
+						<span ng-show="formSignin.password.$error.required">La password es required.</span>
+  						<span ng-show="formSignin.email.$error.minlength">La password debe tener al menos 5 dígitos</span>
+					</span>
+
+                	<button class="btn btn-lg btn-primary btn-block" type="submit">
+                    INGRESAR</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+	<div class="row">
+	username: "user",
+	password: "password",
+	</div>	
+</div>

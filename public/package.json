@@ -1,0 +1,15 @@
+{
+  "name": "npm_packages",
+  "version": "0.0.0",
+  "description": "paquetes traidos usando npm",
+  "main": "npm.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-include-source": "^0.7.0"
+  }
+}
