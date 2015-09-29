@@ -1,14 +1,16 @@
 'use strict';
 
-// https://docs.angularjs.org/api/ngResource/service/$resource
-
+//SERVICIO REST UTILIZANDO ANGULAR-RESOURCE
 angular.module('BlogApp')
   .service('Post', function ($resource) {
 
     var PostApi = $resource('/post/:id', 
     					{ id: '@id' }, 
-    					{'update': { method: 'PUT' }}
+    					{'update': { method: 'PUT' }} //NOTA: El método default es POST
     				);
 
     return PostApi;
 });
+
+
+// https://docs.angularjs.org/api/ngResource/service/$resource

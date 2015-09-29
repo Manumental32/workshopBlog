@@ -1,5 +1,7 @@
 'use strict';
 
+// NO SE USA EN ESTA APP PERO MUESTRA COMO TRABAJA EL $http EN CAMBIO DEL $resource
+
 (function() {
 
 function PostController($scope, $http, $stateParams, $state, $window,localStorageService, $rootScope, Post) {

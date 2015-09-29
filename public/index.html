@@ -9,7 +9,7 @@
     <link rel='stylesheet' href='bower_components/textAngular/dist/textAngular.css'>
     <link rel='stylesheet' href='bower_components/textAngular/src/textAngular.css'>
     <link rel='stylesheet' href='bower_components/font-awesome/css/font-awesome.css'>
-    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="app.css"> 
 
 
     <!-- JS (load angular, ui-router, and our custom js file) -->
@@ -19,8 +19,8 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
     <!-- LIBRERIAS RECOMENDABLES PARA ANGULAR -->
-    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
 
     <!-- LIBRERIAS NECESARIAS PARA ESTE PROYECTO EN PARTITULAR-->
 	<script src='bower_components/textAngular/dist/textAngular-rangy.min.js'></script>
@@ -45,27 +45,27 @@
 </head>
 
 
-<!-- apply our angular app to our site -->
+<!-- BEGIN ANGULAR BLOGAPP! -->
 <body ng-app="BlogApp">
 
-<!-- NAVIGATION -->
+<!-- BARRA DE NAVEGACIÓN SIEMPRE VISIBLE -->
 <nav class="navbar navbar-inverse" role="navigation">
     <div class="navbar-header">
         <a class="navbar-brand" ui-sref="post">Blog Workshop</a>
     </div>
     <ul class="nav navbar-nav">
-        <li><a ui-sref="login">login</a></li>
         <li><a ui-sref="post">Posts</a></li>
-        <li><a ui-sref="about">About</a></li>
+        <li><a ui-sref="workshop">About workshop</a></li>
         <li><a ui-sref="logout">Logout</a></li>
     </ul>
 	<div class="navbar-header">
-        <li><a class="navbar-brand" ui-sref="post"> Hola {{saludo}}</a></li>
+        <li><span class="navbar-brand" > Hola {{saludo}}</span></li>
 	</div>
 </nav>
 
 <div class="container">
-
+	
+	<!-- VISTA DE CARGA DINÁMICA -->
     <div ui-view></div>
 
 </div>

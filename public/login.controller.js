@@ -1,21 +1,27 @@
 'use strict';
-(function() {
 
-function LoginController($scope, $http, $state, localStorageService) {
+angular.module('BlogApp')
+  .controller('LoginController', function ($scope, $rootScope, $http, $state, localStorageService) {
 
-  	var user = localStorageService.get('localStorageKey');
+	//CHEQUEO EL USUARIO SE LOGEÓ
+	var saludo = localStorageService.get('localStorageKey');
+	
+ 	if(saludo) {
+		saludo = JSON.parse(saludo);
+ 		$rootScope.saludo = saludo.username;
+	 	$state.go('post');
 
-  	if (user) {
- 		$state.go('post');
-	};
+ 	} else {
 
+	 	$state.go('login');
+ 	}
+ 	
+
+ 	//FUNCIÓN DE LOGIN
 	$scope.login = function() {
 		
-  		$http.post('/login', 
-  			{username: $scope.username,password: $scope.password}
- 			).then(function(response) {
+  		$http.post('/login', {username: $scope.username,password: $scope.password }).then(function(response) {
  				// console.log(response);
- 				console.log(response.data);
 
  				if (response.data.error !== 404) {
  					localStorageService.set('localStorageKey',JSON.stringify(response.data));
@@ -28,9 +34,4 @@ function LoginController($scope, $http, $state, localStorageService) {
  	}
 
 
-}
-
-angular.module('BlogApp')
-  .controller('LoginController', LoginController);
-
-})();
+});

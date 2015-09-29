@@ -1,5 +1,6 @@
 'use strict';
 
+// MODULOS A NUESTRA APP
 var app = angular.module('BlogApp', [
   'ui.router',
   'ngResource',
@@ -7,13 +8,13 @@ var app = angular.module('BlogApp', [
   'LocalStorageModule'
 ]);
 
+// CONFIGURACIÓN DE LOS ESTADOS POSIBLES DE NAVEGACIÓN
 app.config(function($stateProvider, $urlRouterProvider) {
     
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/post'); //DEFAULT
     
     $stateProvider
         
-        // HOME STATES AND NESTED VIEWS ========================================
         .state('login', {
             url: '/login',
             templateUrl: 'partial-views/login.html',
@@ -25,28 +26,21 @@ app.config(function($stateProvider, $urlRouterProvider) {
             controller: 'LogoutController'
         })
         
-        // HOME STATES AND NESTED VIEWS ========================================
         .state('post', {
             url: '/post',
             templateUrl: 'partial-views/post.html',
             controller: 'PostController'
         })
         
-        // HOME STATES AND NESTED VIEWS ========================================
         .state('post_detail', {
             url: '/post/:id',
             templateUrl: 'partial-views/post-detail.html',
             controller: 'PostController'
         })
         
-        // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
-        .state('about', {
-            // we'll get to this in a bit       
+        .state('workshop', {
+            url: '/workshop',
+            templateUrl: 'partial-views/workshop.html',
         });
         
 })
-// .run(['$rootScope', '$state', '$stateParams',
-//   function ($rootScope, $state, $stateParams) {
-//     $rootScope.$state = $state;
-//     $rootScope.$stateParams = $stateParams;
-// }])

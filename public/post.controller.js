@@ -1,10 +1,22 @@
 'use strict';
 
-(function() {
-
-function PostController(Post, $scope, $stateParams, $state, $window, localStorageService, $rootScope) {
+angular.module('BlogApp')
+  .controller('PostController', function (Post, $scope, $stateParams, $state, $window, localStorageService,$rootScope) {
 
 	$scope.post = ''; 
+
+	var saludo = localStorageService.get('localStorageKey');
+	
+ 	if(saludo) {
+
+		saludo = JSON.parse(saludo);
+ 		$rootScope.saludo = saludo.username;
+	 	$state.go('post');
+
+ 	} else {
+
+	 	$state.go('login');
+ 	}
 
 	//FUNCION DE CARGA DE POSTS
 	$scope.getAllposts = function(){
@@ -80,9 +92,10 @@ function PostController(Post, $scope, $stateParams, $state, $window, localStorag
 
 	//FUNCION PARA ELIMINAR UN POST
 	$scope.deletePost = function(post){
+		
 		var confirm = false;
 		// confirm = true;
-		confirm = $window.confirm('Estas seguro de querer eliminar el post' + post.title + '?');
+		confirm = $window.confirm('Estas seguro de querer eliminar el post: ' + post.title + '?');
 		
 		if(confirm) {
 
@@ -95,18 +108,4 @@ function PostController(Post, $scope, $stateParams, $state, $window, localStorag
 
 	};
 
-
-
-	var saludo = localStorageService.get('localStorageKey');
-	
- 	if(saludo) {
-		saludo = JSON.parse(saludo);
- 		$rootScope.saludo = saludo.username;
- 	}
-
-}
-
-angular.module('BlogApp')
-  .controller('PostController', PostController);
-
-})();
+});

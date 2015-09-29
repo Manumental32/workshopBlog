@@ -5,6 +5,10 @@
 
 /*LOGIN CSS*/
 
+#container-login {
+    background: url('imgs/FotoWEB.jpg')
+}
+
 .form-signin input.ng-invalid.ng-touched {
 background-color: #FA787E;
 }
@@ -64,7 +68,8 @@ background-color: #78FA89;
 }
 .login-title
 {
-    color: #555;
+    /*color: #555;*/
+    color: white;
     font-size: 18px;
     font-weight: 400;
     display: block;
@@ -93,4 +98,9 @@ background-color: #78FA89;
     height: auto;
     min-height: 100px;
     padding: 6px 12px;
+}
+
+
+#container-workshop img{
+    width: 100%;
 }

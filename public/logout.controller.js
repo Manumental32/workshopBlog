@@ -1,15 +1,10 @@
 'use strict';
-(function() {
 
-function LogoutController($scope, $state, localStorageService) {
+angular.module('BlogApp')
+  .controller('LogoutController', function LogoutController($scope, $state, localStorageService) {
 
   	localStorageService.remove('localStorageKey');
 
  		$state.go('login');
 
-}
-
-angular.module('BlogApp')
-  .controller('LogoutController', LogoutController);
-
-})();
+});
