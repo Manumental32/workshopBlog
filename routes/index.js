@@ -1,39 +1,41 @@
-//  Rutas del /
+//  Configuracion de las rutas en  "/"
 module.exports = function(db) {
 
-    //  Cargamos los modulos
-    var express = require('express');
+	//  Cargamos express
+	var express = require('express');
 
-    //  Inicializamos el enrutador
-    var router = express.Router();
+	//  Inicializamos el enrutador de express
+	var router = express.Router();
 
-    // Respuesta al GET /
-    router.get('/', express.static('public'));
+	// Respuesta a una peticion del tipo POST a la URL "/login"
+	router.post('/login', function(req, res, next){
 
-    // Respuesta al POST /login (Autentificacion del usuario)
-    router.post('/login', function(req, res, next){
+		//	Buscamos el usuario
+		db.users.findOne(
+			{
+				username: req.body.username
+			,	password: req.body.password
+			}
+		,	function (err, user)
+			{
+				//	En caso de que ocurra un error
+				if (err)
+					return next(err);
 
-        db.users.findOne(
-            {
-                username: req.body.username
-            ,   password: req.body.password
-            }
-        ,   function (err, user)
-            {
-                if (err)
-                    return next();
+				//	Si no se encontro el usuario
+				if (!user)
+					return res.json({
+						message: "Usuario o contraseña incorrecta",
+						error: 404
+					});
 
-                if (!user)
-                    return res.json({
-                        message: "Usuario o contraseña incorrecta",
-                        error: 404
-                    });
+				//	Si se encontro el usuario lo devolvemos bajo el formato JSON
+				res.json(user)
+			}
+		);
 
-                res.json(user)
-            }
-        );
+	});
 
-    });
-
-    return router;
+	//	Devolvemos el enrutador el cual tendra las nuevas rutas configuradas
+	return router;
 }

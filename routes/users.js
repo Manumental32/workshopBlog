@@ -1,89 +1,115 @@
-//  Rutas del /post
+//  Configuracion de las rutas en "/user"
 module.exports = function(db){
 
-    //  Cargamos los modulos
-    var express = require('express');
+	//  Cargamos express
+	var express = require('express');
 
-    //  Inicializamos el enrutador
-    var router = express.Router();
+	//  Inicializamos el enrutador de express
+	var router = express.Router();
 
-    // Respuesta al GET /user (Obtenemos todos los users)
-    router.get('/', function (req, res, next) {
-    db.users.find(
-        req.params
-        ,   function(err, docs)
-        {
-          if (err)
-            next(err);
+	// Respuesta a una peticion del tipo GET a la URL "/user"
+	router.get('/user', function (req, res, next) {
 
-          res.json(docs);
-        }
-    );
-    });
+		//	Buscamos todos los usuarios
+		db.users.find(
+			req.params
+		,	function(err, docs)
+			{
+				//	En caso de que ocurra un error
+				if (err)
+					next(err);
 
-    // Respuesta al GET /user/:id (Obtenemos el user con la id pasada como parametro)
-    router.get('/:id', function (req, res, next) {
-    db.users.findOne(
-        {
-          _id: req.params.id
-        },
-        function(err, docs)
-        {
-          if (err)
-            next(err);
+				//	Devolvemos todos los usuarios encontrados
+				res.json(docs);
+			}
+		);
 
-          res.json(docs);
-        }
-    );
-    });
+	});
 
-    // Respuesta al POST /user (creamos un nuevo user)
-    router.post('/', function (req, res) {
-    db.users.insert(
-        req.body,
-        function(err, docs)
-        {
-          if (err)
-            next(err);
+	// Respuesta a una peticion del tipo GET a la URL "/user/:id"
+	router.get('/user/:id', function (req, res, next) {
 
-          res.json(docs);
-        }
-    );
-    });
+		//	Buscamos el usuario que tenga la id pasada como parametro en la peticion
+		db.users.findOne(
+			{
+				_id: req.params.id
+			}
+		,	function(err, docs)
+			{
+				//	En caso de que ocurra un error
+				if (err)
+					next(err);
 
-    // Respuesta al PUT /user/:id (Actualizamos el user segun la id pasada como parametro)
-    router.put('/:id', function (req, res) {
-    db.users.update(
-        {
-          _id: req.params.id
-        },
-        req.body,
-        function(err, num)
-        {
-          if (err)
-            next(err);
+				//	Devolvemos el usuario encontrado o nada si no se lo encontro
+				res.json(docs);
+			}
+		);
 
-          res.json(num)
-        }
-    );
-    });
+	});
 
-    // Respuesta al DELETE /user (borramos un user segun la id pasada como paramentro)
-    router.delete('/:id', function (req, res) {
-    db.users.remove(
-        {
-          _id: req.params.id
-        }
-        ,   {}
-        ,   function(err, num)
-        {
-          if (err)
-            next(err)
+	// Respuesta a una peticion del tipo POST a la URL "/user"
+	router.post('/user', function (req, res) {
+		
+		//	Creamos un nuevo usuario con los atributos pasados en el cuerpo de la peticion
+		db.users.insert(
+			req.body
+		,	function(err, docs)
+			{
+				//	En caso de que ocurra un error
+				if (err)
+					next(err);
 
-          res.json(num)
-        }
-    );
-    });
+				//	Devolvemos todos el usuario creado
+				res.json(docs);
+			}
+		);
 
-    return router;
+	});
+
+	// Respuesta a una peticion del tipo PUT a la URL "/user/:id"
+	router.put('/user/:id', function (req, res) {
+		
+		//	Actualizamos el usuario que tenga la id pasada como parametro con los atributos pasados en el cuerpo de la peticion
+		db.users.update(
+			{
+				_id: req.params.id
+			}
+		,	req.body
+		,	function(err, num)
+			{
+				//	En caso de que ocurra un error
+				if (err)
+					next(err);
+
+				//	Devolvemos el indice del usuario actualizado
+				res.json(num)
+			}
+		);
+
+	});
+
+	// Respuesta a una peticion del tipo DELETE a la URL "/user/:id"
+	router.delete('/user/:id', function (req, res) {
+		
+		//	Eliminamos el usuario que tenga la id pasada como parametro en la peticion
+		db.users.remove(
+			{
+				_id: req.params.id
+			}
+		,	{}
+		,	function(err, num)
+			{
+				//	En caso de que ocurra un error
+				if (err)
+					next(err)
+
+				//	Devolvemos el indice del usuario antes de ser eliminado
+				res.json(num)
+			}
+		);
+
+	});
+
+	//	Devolvemos el enrutador el cual tendra las nuevas rutas configuradas
+	return router;
 }

@@ -1,4 +1,4 @@
-//  Cargamos los modulos necesarios
+//  Cargamos los modulos que necesita nuestra aplicacion
 var http = require('http');
 var express = require('express');
 var path = require('path');
@@ -6,7 +6,7 @@ var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var Datastore = require('nedb');
 
-// Cargamos los manejadores de rutas
+//	Cargamos las rutas de nuestra aplicacion
 var indexRoutes = require('./routes/index');
 var userRoutes = require('./routes/users');
 var postRoutes = require('./routes/posts');
@@ -14,7 +14,7 @@ var postRoutes = require('./routes/posts');
 //  Inicializamos la aplicacion
 var app = express();
 
-// Configuramos la aplicacion
+//	Configuramos la aplicacion
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(bodyParser.json());
 
@@ -23,20 +23,20 @@ var db = {};
 db.users = new Datastore({ filename: path.join(__dirname, 'db', 'users.db'), autoload: true });
 db.posts = new Datastore({ filename: path.join(__dirname, 'db', 'posts.db'), autoload: true });
 
-//  Configuramos las rutas cargadas previamente en la aplicacion
-app.use( express.static('public'));
-app.use('/', indexRoutes(db));
-app.use('/user', userRoutes(db));
-app.use('/post', postRoutes(db));
+//  Configuramos las rutas cargadas previamente
+app.use(express.static('public'));
+app.use(indexRoutes(db));
+app.use(userRoutes(db));
+app.use(postRoutes(db));
 
-//  Capturamos los errores de tipo 404
+//  En caso de que ocurra un error del tipo 404 - Not Found manejamos el error
 app.use(function(req, res, next) {
 	var err = new Error('Recurso no encontrado');
 	err.status = 404;
 	next(err);
 });
 
-//  Respuesta a un error
+//	En caso de que ocurra un error, configuramos la respuesta
 app.use(function(err, req, res, next) {
 	res.status(err.status || 500);
 	res.json({
@@ -48,13 +48,7 @@ app.use(function(err, req, res, next) {
 //  Creamos el servidor http
 var server = http.createServer(app);
 
-//  Escuchamos el puerto 300
-server.listen(3000);
-
-//	Cuando el servidor esta listo escuchara las peticiones entrantes
-server.on('listening', onListening);
-
-//  Escuchamos el servidor
-function onListening() {
+//  Inicializamos el servidor en el puerto 3000
+server.listen(3000, function() {
 	console.log('Escuchando el puerto ' + server.address().port);
-}
+});
