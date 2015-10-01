@@ -11,7 +11,6 @@ angular.module('BlogApp')
 
 		saludo = JSON.parse(saludo);
  		$rootScope.saludo = saludo.username;
-	 	$state.go('post');
 
  	} else {
 
