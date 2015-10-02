@@ -51,9 +51,8 @@ PUT     localhost:3000/post/:id     ->  Actualizar un post
 DELETE  localhost:3000/post/:id     ->  Borrar un post
 ```
 
-### FRONTEND
-
 Teoría:
 https://drive.google.com/open?id=0B4PHR2aHWZ9IZU9KNzFEZVVVMW8
 
+### FRONTEND
 Todos los archivos del frontend ( Angularjs) están en la carpeta public/
